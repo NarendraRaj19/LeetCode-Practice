@@ -54,9 +54,9 @@ class DLLNode
 
 class LRUCache
 {
-    private static HashMap<Integer, DLLNode> map;
-    static DLLNode head, tail;
-    static int count, cap;
+    private  HashMap<Integer, DLLNode> map;
+     DLLNode head, tail;
+     int count, cap;
     
     //Constructor for initializing the cache capacity with the given value.
     LRUCache(int cap)
@@ -73,12 +73,12 @@ class LRUCache
         tail.prev = head;
     }
     
-    public static void deleteNode(DLLNode node){
+    public  void deleteNode(DLLNode node){
         node.prev.next = node.next;
         node.next.prev = node.prev;
     }
     
-    public static void addToHead(DLLNode node){
+    public  void addToHead(DLLNode node){
         DLLNode headNext = head.next;
         node.next = headNext;
         headNext.prev = node;
@@ -87,7 +87,7 @@ class LRUCache
     }
 
     //Function to return value corresponding to the key.
-    public static int get(int key)
+    public  int get(int key)
     {
         // your code here
         if(map.get(key) != null){
@@ -101,7 +101,7 @@ class LRUCache
     }
 
     //Function for storing key-value pair.
-    public static void set(int key, int value)
+    public  void set(int key, int value)
     {
         // your code here
         
