@@ -54,9 +54,9 @@ class DLLNode
 
 class LRUCache
 {
-    private  HashMap<Integer, DLLNode> map;
-     DLLNode head, tail;
-     int count, cap;
+    private static HashMap<Integer, DLLNode> map;
+    static DLLNode head, tail;
+    static int count, cap;
     
     //Constructor for initializing the cache capacity with the given value.
     LRUCache(int cap)
