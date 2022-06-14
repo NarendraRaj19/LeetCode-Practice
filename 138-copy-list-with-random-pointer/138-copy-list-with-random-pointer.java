@@ -16,7 +16,9 @@ class Node {
 class Solution {
     public Node copyRandomList(Node head) {
         
+        
         if(head == null) return head;
+        
         Node next,temp;
         
         //Creating Copy Nodes for each original Node
