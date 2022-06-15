@@ -126,7 +126,7 @@ class GFG
         //if k is more than number of nodes or kth node from beginning 
         //and end are same, we return the list.
         if(K > num) return head;
-         if(2*K-1 == num) return head;
+         //if(2*K-1 == num) return head;
     
         Node x_prev = null;
         Node x = head;
