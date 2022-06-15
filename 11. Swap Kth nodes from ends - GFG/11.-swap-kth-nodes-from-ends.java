@@ -143,7 +143,7 @@ class GFG
         // x = x.next;
         // }
         
-        for(int i = K-1; i > 0; i--)
+        for(int i = 0; i < K-1; i++)
         {
             x_prev = x;
             x = x.next;
