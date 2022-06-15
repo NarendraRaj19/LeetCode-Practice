@@ -122,38 +122,53 @@ class GFG
     {
         // your code here
         
-        if( K > num) return head;
         
-       Node first = head;
-       Node second = head;
-       Node prev1 = null;
-       Node prev2 = null;
-       
-       
-       for(int i = 1; i<K ;i++){
-           prev1 = first;
-           first = first.next;
-       }
-       for(int i = 1; i<num - K+1 ;i++){
-           prev2 = second;
-           second = second.next;
-       }
-       if(prev1!=null){
-           prev1.next = second;
-       }
-       if(prev2!=null){
-           prev2.next = first;
-       }
-       Node temp = first.next;
-       first.next = second.next;
-       second.next = temp;
+        //if k is more than number of nodes or kth node from beginning 
+        //and end are same, we return the list.
+        if(K > num) return head;
+         if(2*K-1 == num) return head;
+    
+        Node x_prev = null;
+        Node x = head;
+    
+        Node y_prev = null;
+        Node y = head;
+    
+        int count = K-1;
+        //finding the kth node from the beginning of list. We also find node
+        //previous of kth node because we need to update next pointer of 
+        // the previous node.
+        while(count-- > 0){
+        x_prev = x;
+        x = x.next;
+        }
+    
+        count = num - K;
+        //similarly, finding the kth node from end and its previous node. kth
+        //node from end is (num-k+1)th node from beginning .
+        while(count-- > 0){
+        y_prev = y;
+        y = y.next;
+        }
         
-        if(K == 1){
-           head = second;
-       }
-       if(K == num){
-           head = first;
-       }
-       return head;
+        //if x_prev exists, then new next of it will be y.
+        if(x_prev != null)
+            x_prev.next = y;
+        //if y_prev exists, then new next of it will be x.
+        if(y_prev != null)
+            y_prev.next = x;
+        
+        //we will swap the next pointers of x and y.
+        Node temp = x.next;
+        x.next = y.next;
+        y.next = temp;
+        
+        //changing head pointers when k is 1 or num.
+        if(K == 1)
+         head = y;
+        if(K == num)
+            head = x;
+            
+        return head;    
     }
 }
