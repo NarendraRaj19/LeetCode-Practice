@@ -152,9 +152,15 @@ class GFG
         count = num - K;
         //similarly, finding the kth node from end and its previous node. kth
         //node from end is (num-k+1)th node from beginning .
-        while(count-- > 0){
-        y_prev = y;
-        y = y.next;
+        // while(count-- > 0){
+        // y_prev = y;
+        // y = y.next;
+        // }
+        
+        for(int i = 0; i < num - K; i++)
+        {
+            y_prev = y;
+            y = y.next;
         }
         
         //if x_prev exists, then new next of it will be y.
