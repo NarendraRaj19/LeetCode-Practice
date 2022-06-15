@@ -138,9 +138,15 @@ class GFG
         //finding the kth node from the beginning of list. We also find node
         //previous of kth node because we need to update next pointer of 
         // the previous node.
-        while(count-- > 0){
-        x_prev = x;
-        x = x.next;
+        // while(count-- > 0){
+        // x_prev = x;
+        // x = x.next;
+        // }
+        
+        for(int i = K-1; i > 0; i--)
+        {
+            x_prev = x;
+            x = x.next;
         }
     
         count = num - K;
