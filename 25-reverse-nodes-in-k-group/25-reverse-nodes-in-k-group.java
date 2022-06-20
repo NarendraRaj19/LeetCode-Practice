@@ -9,63 +9,43 @@
  * }
  */
 class Solution {
-    public ListNode reverseLinkedList(ListNode head, int k) {
+    
+    //Reverse a LinkedList upto k Nodes
+    public ListNode reverseLinkedList(ListNode head, int k){
         
-        // Reverse k nodes of the given linked list.
-        // This function assumes that the list contains 
-        // atleast k nodes.
-        ListNode new_head = null;
-        ListNode ptr = head;
+        ListNode curr = head;
+        ListNode prev = null;
         
-        while (k > 0) {
-            
-            // Keep track of the next node to process in the
-            // original list
-            ListNode next_node = ptr.next;
-            
-            // Insert the node pointed to by "ptr"
-            // at the beginning of the reversed list
-            ptr.next = new_head;
-            new_head = ptr;
-            
-            // Move on to the next node
-            ptr = next_node;
-            
-            // Decrement the count of nodes to be reversed by 1
+        while(k > 0){
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
             k--;
         }
-            
-            
+        
         // Return the head of the reversed list
-        return new_head;
-    
+        return prev;
     }
-            
+    
     public ListNode reverseKGroup(ListNode head, int k) {
         
         ListNode ptr = head;
-        ListNode ktail = null;
         
-        // Head of the final, moified linked list
-        ListNode new_head = null;
+        ListNode ktail = null, new_head = null;
         
-        // Keep going until there are nodes in the list
-        while (ptr != null) {
+        if(head == null || head.next == null) return head;
+        
+        while(ptr != null){
             
             int count = 0;
             
-            // Start counting nodes from the head
-            ptr = head;
-            
-            // Find the head of the next k nodes
-            while (count < k && ptr != null) {
+            while(ptr!= null && count < k){
                 ptr = ptr.next;
-                count += 1;
+                count++;
             }
-
-            // If we counted k nodes, reverse them        
-            if (count == k) {
-                
+            
+            if(count == k){
                 // Reverse k nodes and get the new head
                 ListNode revHead = this.reverseLinkedList(head, k);
                 
@@ -80,14 +60,12 @@ class Solution {
                     
                 ktail = head; 
                 head = ptr;
+                
             }
         }
-            
-         // attach the final, possibly un-reversed portion
         if (ktail != null)
             ktail.next = head;
         
         return new_head == null ? head : new_head;
     }
-
 }
