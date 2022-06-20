@@ -116,19 +116,18 @@ class Swap
     {
         // your code here
         
-        
         Node curr = node.next.next;
-        
         Node prev = node;
         node = node.next;
         node.next = prev;
         
-        while(curr != null && curr.next != null){
-            prev.next=curr.next;
-            prev=curr;
-            Node next=curr.next.next;
-            curr.next.next=curr;
-            curr=next;
+        while(curr != null && curr.next != null)
+        {
+            Node next = curr.next.next;
+            prev.next = curr.next;
+            prev = curr;
+            curr.next.next = curr;
+            curr = next;
         }
         prev.next = curr;
         return node;
