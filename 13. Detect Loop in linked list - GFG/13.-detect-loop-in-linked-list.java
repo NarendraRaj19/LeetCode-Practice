@@ -92,16 +92,14 @@ class Solution {
         // }
         // return false;
         
-        Node fast = head.next, slow = head;
-        
-        while(fast != slow){
-            
-            if(fast == null || fast.next == null) return false;
-            
-            fast = fast.next.next;
-            slow = slow.next;
+        Node slow=head, fast=head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+            if(fast==slow)
+                return true;
         }
-        
-        return true;
+        return false;
     }
 }
