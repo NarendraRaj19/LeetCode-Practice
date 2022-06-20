@@ -10,62 +10,69 @@
  */
 class Solution {
     
-    //Reverse a LinkedList upto k Nodes
-    public ListNode reverseLinkedList(ListNode head, int k){
-        
-        ListNode curr = head;
-        ListNode prev = null;
+    //Method to reverse a LinkedList upto K nodes
+    public ListNode reverseLinkedList(ListNode head, int k) {
+    
+        ListNode next = null, prev = null, curr = head;
         
         while(k > 0){
-            ListNode next = curr.next;
+            next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
             k--;
         }
         
-        // Return the head of the reversed list
+        //returns the head of the reversed Linked List
         return prev;
     }
     
     public ListNode reverseKGroup(ListNode head, int k) {
         
-        ListNode ptr = head;
-        
-        ListNode ktail = null, new_head = null;
-        
         if(head == null || head.next == null) return head;
+        
+        
+        ListNode ptr = head, kTail = null, newHead = null;
+        
         
         while(ptr != null){
             
             int count = 0;
             
-            while(ptr!= null && count < k){
+            
+            while(ptr != null && count < k){
                 ptr = ptr.next;
                 count++;
             }
             
+            //Only if there are k nodes available then we proceed and reverse them
             if(count == k){
-                // Reverse k nodes and get the new head
+                //
                 ListNode revHead = this.reverseLinkedList(head, k);
                 
-                // new_head is the head of the final linked list
-                if (new_head == null)
-                    new_head = revHead;
+                //Gets assigned the initial value of revHead
+                if(newHead == null){
+                    newHead = revHead;
+                }
                 
-                // ktail is the tail of the previous block of 
-                // reversed k nodes
-                if (ktail != null)
-                    ktail.next = revHead;
-                    
-                ktail = head; 
+                //
+                if(kTail != null){
+                    kTail.next = revHead;
+                }
+                
+                //kTail references the tail of the final/modified linked list
+                kTail = head;
+                //Updating the head after completion of reversing k nodes
                 head = ptr;
                 
             }
         }
-        if (ktail != null)
-            ktail.next = head;
         
-        return new_head == null ? head : new_head;
+        // attach the final, possibly un-reversed portion
+        if(kTail != null){
+            kTail.next = head;
+        }
+        
+        return newHead == null ? head : newHead;
     }
 }
