@@ -80,60 +80,35 @@ class Solution
     static Node segregate(Node head)
     {
         // add your code here
-        Node curr = head;
         
-        Node zeroD = new Node(0);
-        Node oneD = new Node(0);
-        Node twoD = new Node(0);
+        Node zeroD = new Node(-1);
+        Node oneD = new Node(-1);
+        Node twoD = new Node(-1);
         
-        //initializing current pointers for three lists.
         Node zero = zeroD, one = oneD, two = twoD;
         
-        //traversing over the list with a pointer.
-        while(curr != null)
-        {
-            //we check data at current node and store the node in it's 
-            //respective list and update the link part of that list.
-            if(curr.data == 0)
-            {
+        Node curr = head;
+        
+        while(curr != null){
+            if(curr.data == 0){
                 zero.next = curr;
                 zero = zero.next;
-                curr = curr.next;
-            }
-            else if(curr.data == 1)
-            {
+            } else if(curr.data == 1){
                 one.next = curr;
                 one = one.next;
-                curr = curr.next;
-            }
-            else
-            {
+            } else {
                 two.next = curr;
                 two = two.next;
-                curr = curr.next;
             }
+            curr = curr.next;
         }
         
-
-        //printList(twoD);
-        //attaching the three lists containing 0s,1s and 2s respectively.
         zero.next = (oneD.next  != null) ? (oneD.next) : (twoD.next);
         one.next = twoD.next;
         two.next = null;
         
-        //updating the head of the list.
-        
         return zeroD.next;
         
-    
-    }
-    
-    static void printList(Node n){
-        
-        while(n != null){
-            System.out.println("Data:: "+n.data);
-            n = n.next;
-        }
     }
 }
 
