@@ -80,89 +80,60 @@ class Solution
     static Node segregate(Node head)
     {
         // add your code here
-    //     Node curr = head;
+        Node curr = head;
         
-    //     Node resultList = null;
-    //     Node output = null;
-    //     boolean flag = false;
+        Node zeroD = new Node(0);
+        Node oneD = new Node(0);
+        Node twoD = new Node(0);
         
-    //     //Add Zero Nodes to new Linked List
-    //     while(curr != null){
-    //         if(curr.data == 0){
-                
-    //             if(flag != true) {
-    //                 System.out.println("Enters Condition!!");
-    //                 flag = true;
-    //                 resultList = curr;
-    //                 output = resultList;
-    //             } else {
-    //                 resultList.next = curr;
-    //             }
-    //         }
-    //         curr = curr.next;
-    //     }
+        //initializing current pointers for three lists.
+        Node zero = zeroD, one = oneD, two = twoD;
         
-    //     curr = head;
-    //   //Add One Nodes to new Linked List 
-    //     while(curr != null){
-    //         if(curr.data == 1){
-    //             resultList.next = curr;
-    //             //resultList = resultList.next;
-    //         }
-    //         curr = curr.next;
-    //     }
+        //traversing over the list with a pointer.
+        while(curr != null)
+        {
+            //we check data at current node and store the node in it's 
+            //respective list and update the link part of that list.
+            if(curr.data == 0)
+            {
+                zero.next = curr;
+                zero = zero.next;
+                curr = curr.next;
+            }
+            else if(curr.data == 1)
+            {
+                one.next = curr;
+                one = one.next;
+                curr = curr.next;
+            }
+            else
+            {
+                two.next = curr;
+                two = two.next;
+                curr = curr.next;
+            }
+        }
         
+
+        //printList(twoD);
+        //attaching the three lists containing 0s,1s and 2s respectively.
+        zero.next = (oneD.next  != null) ? (oneD.next) : (twoD.next);
+        one.next = twoD.next;
+        two.next = null;
         
-    //     curr = head;
-    //   //Add Two Nodes to new Linked List 
-    //     while(curr != null){
-    //         if(curr.data == 2){
-    //             resultList.next = curr;
-    //             //resultList = resultList.next;
-    //         }
-    //         curr = curr.next;
-    //     }
+        //updating the head of the list.
         
-    //     return output;
+        return zeroD.next;
+        
     
-    Node h0 = new Node(-1);
-       Node zr = h0;
-       
-       Node h1 = new Node(-1);
-       Node on = h1;
-       
-       Node h2 = new Node(-1);
-       Node tw = h2;
-       
-       Node curr = head;
-       while(curr != null){
-         if(curr.data == 0){
-            zr.next = curr;
-            zr = zr.next;
-         }
-         else if(curr.data == 1){
-            on.next = curr;
-            on = on.next;
-         }
-         else{
-            tw.next = curr;
-            tw = tw.next; 
-         }
-         
-         curr = curr.next;
-       }
-       
-       if(h0.next==null){
-          if(h1.next==null)head = h2.next;
-          else head = h1.next;
-       }
-       else head = h0.next;
-       
-       zr.next = h1.next == null ? h2.next : h1.next;
-       on.next = h2.next;
-       tw.next = null;
-       
-       return head;
+    }
+    
+    static void printList(Node n){
+        
+        while(n != null){
+            System.out.println("Data:: "+n.data);
+            n = n.next;
+        }
     }
 }
 
