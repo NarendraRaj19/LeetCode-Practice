@@ -24,11 +24,11 @@ class Solution {
         // Reverse the second part of the linked list
         // convert 1->2->3->4->5->6 into 1->2->3->4 and 6->5->4
         // reverse the second half in-place
-        ListNode prev = null, curr = slow, temp;
+        
+        ListNode curr = slow, prev = null, temp;
         
         while(curr != null){
             temp = curr.next;
-            
             curr.next = prev;
             prev = curr;
             curr = temp;
@@ -37,16 +37,18 @@ class Solution {
         // merge two sorted linked lists [Problem 21]
         // merge 1->2->3->4 and 6->5->4 into 1->6->2->5->3->4
         
-        ListNode first = head, second = prev, tmp;
-        while (second.next != null) {
-          tmp = first.next;
-          first.next = second;
-          first = tmp;
-
-          tmp = second.next;
-          second.next = first;
-          second = tmp;
+        ListNode second = prev, first = head, tmp;
+        
+        while(second.next != null){
+            tmp = first.next;
+            first.next = second;
+            first = tmp;
+            
+            tmp = second.next;
+            second.next = first;
+            second = tmp;
         }
+        
         
     }
 }
