@@ -133,14 +133,11 @@ class Solution
          
         //first pointer, slow moves 1 node and second pointer, fast moves
         //2 nodes in one iteration.
-        while (fastptr != null)
+        while (fastptr != null && fastptr.next != null)
         {
-            fastptr = fastptr.next;
-            if(fastptr!=null)
-            {
+            
                 slowptr = slowptr.next;
-                fastptr=fastptr.next;
-            }
+                fastptr = fastptr.next.next;
         }
         //slow is before the midpoint in the list, so we split the 
         //list in two halves from that point.
