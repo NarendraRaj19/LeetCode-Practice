@@ -73,70 +73,78 @@ class Node
 class Solution
 {
     //Function to sort the given linked list using Merge Sort.
-    static Node mergeSort(Node head)
+    public static Node mergeSort(Node head)
     {
-       if(head==null || head.next==null)return head;
-       
-       Node mid = findMid(head);
-       Node left = head;
-       Node right = mid.next;
-       mid.next = null;
-       
-       Node ls = mergeSort(left);
-       Node rs = mergeSort(right);
-       return merge(ls, rs);
+        if(head == null || head.next == null)
+           return head;
+        
+        //splitting the list into two halves.   
+        Node middle = getMiddle(head);
+        Node nextofmiddle = middle.next;
+        middle.next = null;
+        
+        //calling the mergeSort function recursively for both parts separately.
+        Node left = mergeSort(head);
+        Node right = mergeSort(nextofmiddle);
+        
+        //calling the function to merge both halves.
+        Node sortedlist = sortedMerge(left, right);
+        return sortedlist;
+        
     }
     
-    static Node findMid(Node head){
-       Node slow = head;
-       Node fast = head.next; //So that if there are two mids then first mid can be found
+    //Function to merge two halves of list.
+    public static Node sortedMerge(Node a, Node b)
+    {
+        Node result = null;
         
-       while(fast != null && fast.next != null){
-          slow = slow.next;
-          fast = fast.next.next;
-       }
+        //base cases when either of two halves is null.
+        if (a == null)
+            return b;
+        if (b == null)
+            return a;
+ 
+        //comparing data in both halves and storing the smaller in result and
+        //recursively calling the mergeList function for next node in result.
+        if (a.data <= b.data) 
+        {
+            result = a;
+            result.next = sortedMerge(a.next, b);
+        } 
+        else
+        {
+            result = b;
+            result.next = sortedMerge(a, b.next);
+        }
         
-       return slow;
+        //returning the resultant list.
+        return result;
     }
     
-    //merging two sorted lists and return the head of sorted list 
-    static Node merge(Node ls, Node rs){
-       Node head = new Node(-1);
-       Node arg = head;
-        
-       Node l1 = ls;
-       Node l2 = rs;
-       while(l1 != null && l2 != null){
-          if(l1.data <= l2.data){
-             arg.next = l1;
-             arg = arg.next;
-              
-             l1 = l1.next;
-          }
-          else{
-             arg.next = l2;
-             arg = arg.next;
-              
-             l2 = l2.next; 
-          } 
-           
-       }
-        
-        while(l1 != null){
-           arg.next = l1;
-           arg = arg.next;
-              
-           l1 = l1.next; 
+    //Function to split the list into two halves.
+    public static Node getMiddle(Node h)
+    {
+        if (h == null)
+            return h;
+            
+        //using two pointers to find the midpoint of list.
+        Node fastptr = h.next;
+        Node slowptr = h;
+         
+        //first pointer, slow moves 1 node and second pointer, fast moves
+        //2 nodes in one iteration.
+        while (fastptr != null)
+        {
+            fastptr = fastptr.next;
+            if(fastptr!=null)
+            {
+                slowptr = slowptr.next;
+                fastptr=fastptr.next;
+            }
         }
-        
-         while(l2 != null){
-           arg.next = l2;
-           arg = arg.next;
-              
-           l2 = l2.next; 
-        }
-        
-        return head.next;
+        //slow is before the midpoint in the list, so we split the 
+        //list in two halves from that point.
+        return slowptr;
     }
 }
 
