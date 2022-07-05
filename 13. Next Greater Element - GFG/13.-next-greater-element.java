@@ -38,7 +38,7 @@ class Solution
         
         long[] result = new long[n];
         
-        result[0] = -1;
+        result[n-1] = -1;
         sq.push(arr[n-1]);
         int j =1;
         
@@ -47,18 +47,13 @@ class Solution
             while(sq.isEmpty() == false && sq.peek() <= arr[i]){
                 sq.pop();
             }
-            result[j] = sq.isEmpty() ? -1 : sq.peek();
+            result[i] = sq.isEmpty() ? -1 : sq.peek();
             j++;
             sq.push(arr[i]);
         }
         
-        long[] output = new long[n];
+        return result;
         
-        for(int i=0; i<n; i++)
-        {
-            output[i] = result[n-(i+1)];
-        }
         
-        return output;
     } 
 }
