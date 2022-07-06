@@ -72,11 +72,6 @@ class Solution
         
         //Now we have the smaller element to left & right of each element in two arrays (pse & nse)
         
-        for(int i=0; i<size; i++)
-        {
-           //System.out.println("The values are:: "+pse[i]+" & "+nse[i]);
-        }
-        
         long res = 0;
         
         for(int i=0;i<size;i++){
