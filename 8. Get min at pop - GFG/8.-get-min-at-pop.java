@@ -58,9 +58,14 @@ class GetMin
                     as.push(as.peek());
                 }
         }
+        
+        /* Debugging Purpose
+        
         // while(!as.isEmpty()){
         //     System.out.println(as.pop());
         // }
+        
+        */
         
         return ms;
     }
@@ -69,18 +74,6 @@ class GetMin
     static void _getMinAtPop(Stack<Integer>s)
     {
         // your code here
-        // int sz = s.size();
-        
-        // for(int i=0; i<sz; i++)
-        // {
-        //     if(s.peek() == as.peek()){
-        //         s.pop();
-        //         System.out.print(as.pop()+" ");
-        //     } else {
-        //         s.pop();
-        //         System.out.print(as.peek()+" ");
-        //     }
-        // }
         while(!as.isEmpty()){
             System.out.print(as.pop()+" ");
         }
