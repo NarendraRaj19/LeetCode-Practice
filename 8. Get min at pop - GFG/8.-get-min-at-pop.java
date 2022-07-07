@@ -41,6 +41,7 @@ class getMin
 
 class GetMin
 {
+        //Creating Two Static Stacks Globally
         static Stack<Integer> ms = new Stack<Integer>();
         static Stack<Integer> as = new Stack<Integer>();
     //Function to push all the elements into the stack.
