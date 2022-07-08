@@ -55,9 +55,6 @@ class Solution
             if(Character.isLetterOrDigit(c)){
                 st.push(Character.getNumericValue(c));
             } else {
-                // while(!st.isEmpty()){
-                //     System.out.println("Elements "+st.pop());
-                // }
                 
                 int op1 = st.pop();
                 int op2 = st.pop();
@@ -65,7 +62,6 @@ class Solution
                 
                 //System.out.println("Operands are: "+(op1 - '0')+" && "+(op2 - '0'));
                 int result;
-                //(op2 - '0'), (op1 - '0')
                 
                 if(c == '+') result = add(op2, op1);
                 else if(c == '*') result = multiply(op2, op1);
@@ -74,14 +70,9 @@ class Solution
                 else if(c == '^') result = power(op2, op1);
                 else result = -1;
                 
-                //System.out.println("Result: "+result);
-                //char cr=(char)(result+'0'); 
-                //System.out.println("Result Pushed: "+cr);
                 st.push(result);
             }
         }
-        //char ans = st.pop();
-        //System.out.println("Answer: "+st.peek());
         
         return st.pop();
     }
