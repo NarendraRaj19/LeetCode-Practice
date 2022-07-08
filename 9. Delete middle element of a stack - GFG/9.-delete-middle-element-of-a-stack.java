@@ -56,8 +56,10 @@ class Solution
             aux.push(s.pop());
         }
         
-        //System.out.println("The popped Element is:" +aux.pop()+" middle Pos is:"+middlePos);
+        //Removing the Middle Element from the Aux Stack
         aux.pop();
+        
+        //Pushing the elements back to its Original Stack
         while(!aux.isEmpty()){
             int top = aux.pop();
             s.push(top);
