@@ -1,3 +1,4 @@
+//Using a LinkedList as an underlying data structure to solve Ciruclar Queue
 class Node {
     int data;
     Node next;
@@ -18,6 +19,7 @@ class MyCircularQueue {
     }
     
     public boolean enQueue(int value) {
+        //Proceeding only if the LinkedList is not Empty
         if(!isFull()){
             Node temp = new Node(value);
             if(size == 0){
@@ -28,15 +30,23 @@ class MyCircularQueue {
             }
             size++;
             return true;
-        } return false;
+        } 
+        //If Empty
+        return false;
     }
     
     public boolean deQueue() {
+        //Proceeding only if the LinkedList is not Empty
         if(!isEmpty()){
             head  = head.next;
             size--;
+            
+            //Scenario where head becomes null on head.next. Possible when there is only one Node
+            if(head == null) tail = null;
             return true;
-        } return false;
+        } 
+        //If Empty
+        return false;
     }
     
     public int Front() {
