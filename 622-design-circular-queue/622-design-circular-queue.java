@@ -41,7 +41,7 @@ class MyCircularQueue {
             head  = head.next;
             size--;
             
-            //Scenario where head becomes null on head.next. Possible when there is only one Node
+        //Scenario where head becomes null on head.next. Possible when there is only one Node & hea & tail point to           the same node
             if(head == null) tail = null;
             return true;
         } 
